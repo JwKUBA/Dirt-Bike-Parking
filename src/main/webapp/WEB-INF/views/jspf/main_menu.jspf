@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+ 	pageEncoding="UTF-8" isELIgnored="false"%>
+ 
+ <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@	page session="true"%>
+ <p>
+ 	<c:choose>
+ 		<c:when test="${sessionScope.user==null}">
+ 			<a href="register">Zarejstruj sie</a>
+ 			<a href="login">Zaloguj sie</a>
+ 		</c:when>
+ 		<c:otherwise>
+ 			<a href="/DirtBikeParking/">Główna</a>
+			<a href="/DirtBikeParking/user">Dodaj Ogłoszenie</a>
+			<a href="/DirtBikeParking/notice">Twoje Ogłoszenia</a>
+			<a href="/DirtBikeParking/change">Edytuj Profil</a>
+			<a href="/DirtBikeParking/logout">Wyloguj</wojea>
+ 		</c:otherwise>
+ 	</c:choose>
+ </p> 
