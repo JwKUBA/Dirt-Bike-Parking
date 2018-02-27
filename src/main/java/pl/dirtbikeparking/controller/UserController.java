@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pl.dirtbikeparking.bean.LoginData;
@@ -33,9 +34,12 @@ public class UserController {
 		if(bindingResult.hasErrors()) {
 			return "redirect:/register";
 		}
-		userRepository.save(user);
+		this.userRepository.save(user);
+		if(user.getId() == 1) {
+			user.setAdmin(true);
+			this.userRepository.save(user);
+		}
 		return "redirect:/";
-		
 		
 	}
 	
@@ -71,5 +75,65 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/change")
+	public String change(Model m) {
+		HttpSession s = SessionManager.session();
+		User u =(User) s.getAttribute("user");
+		m.addAttribute("user",u);
+		return "change";
+	}
 	
+	@GetMapping("/user/edit/{id}")
+	public String edit(@PathVariable int id, Model m) {
+		User user = this.userRepository.findById(id);
+		m.addAttribute("user", user);
+		return "edit";
+		
+	}
+		
+	@PostMapping("/user/edit/{id}")
+	public String postEdit(@Valid @ModelAttribute User user, BindingResult bindingResult,Model m) {
+		if(bindingResult.hasErrors()) {
+			return "redirect:/edit";
+		}
+		this.userRepository.save(user);
+		m.addAttribute("msg", "edytowano");
+		return "redirect:/";
+		
+	}  
+	
+	@GetMapping("/user/delete")	
+	public String delete(Model m) {
+		HttpSession s = SessionManager.session();
+				User user= (User) s.getAttribute("user");
+		m.addAttribute("user" , user);
+		return "delete_user";
+	}
+	
+	@GetMapping("/user/delete/{dec}")
+	public String deletePost(@PathVariable int dec, @ModelAttribute User user) {
+		if(dec==1) {
+			HttpSession s = SessionManager.session();
+			User u =(User) s.getAttribute("user");
+			s.invalidate();
+			this.userRepository.delete(user);
+			return "redirect:/";
+		}
+		return "redirect:/";
+	}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
+			
 }

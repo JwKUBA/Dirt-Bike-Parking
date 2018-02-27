@@ -15,7 +15,7 @@
 			<a href="/DirtBikeParking/user">Dodaj Ogłoszenie</a>
 			<a href="/DirtBikeParking/notice">Twoje Ogłoszenia</a>
 			<a href="/DirtBikeParking/change">Edytuj Profil</a>
-			<a href="/DirtBikeParking/logout">Wyloguj</wojea>
+			<a href="/DirtBikeParking/logout">Wyloguj</a>
  		</c:otherwise>
  	</c:choose>
  </p> 

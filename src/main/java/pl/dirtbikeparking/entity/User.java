@@ -59,9 +59,20 @@ public class User {
 	@Size(min = 3, max = 20)
 	private String location;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",  cascade = {CascadeType.MERGE, CascadeType.REMOVE})
 	private List <Notice> notice;
 	
+	private boolean isAdmin;
+	
+	
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public User() {
 		super();
 	}
