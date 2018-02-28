@@ -12,7 +12,7 @@
  		</c:when>
  		<c:otherwise>
  			<a href="/DirtBikeParking/">Główna</a>
-			<a href="/DirtBikeParking/user">Dodaj Ogłoszenie</a>
+			<a href="/DirtBikeParking/add">Dodaj Ogłoszenie</a>
 			<a href="/DirtBikeParking/notice">Twoje Ogłoszenia</a>
 			<a href="/DirtBikeParking/change">Edytuj Profil</a>
 			<a href="/DirtBikeParking/logout">Wyloguj</a>

@@ -42,6 +42,7 @@ public class User {
 	private String password;
 	
 	
+	
 	@NotBlank
 	@Size(min = 3, max = 20)
 	private String name;

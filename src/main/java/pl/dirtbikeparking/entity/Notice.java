@@ -2,6 +2,7 @@ package pl.dirtbikeparking.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,30 +26,34 @@ public class Notice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	private User createdBy;
 	
 	@NotEmpty
 	@Size(max= 15)
-	public String brand;
+	private String brand;
 	
-	@NotEmpty
-	@Size(min=1970, max=2050)
-	public String year;
+	//@NotEmpty
+	//@Size(min=1970, max=2050)
+	private String year;
 	
-	@NotEmpty
-	public int mileage;
+	@NotNull
+	private int mileage;
 	
-	@NotEmpty
+	@NotNull
 	@Min(49)
 	@Max(700)
-	public int capacity;
+	private int capacity;
 	
 	@Max(100000)
-	@NotEmpty
-	public int price;
+	@NotNull
+	private int price;
 	
 	@NotEmpty
 	@Size (max = 1000)
-	public String description;
+	private String description;
+	
+	private String engineType;
 	
 	
 	private Date created;
@@ -94,15 +100,6 @@ public class Notice {
 		this.year = year;
 	}
 
-
-	public int getMileage() {
-		return mileage;
-	}
-
-
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
-	}
 
 
 	public int getCapacity() {
@@ -164,10 +161,35 @@ public class Notice {
 		this.user = user;
 	}
 	
+	public String getEngineType() {
+		return engineType;
+	}
+
+
+	public void setEngineType(String engineType) {
+		this.engineType = engineType;
+	}
 	
-	
-	
-	
+
+
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
+	public int getMileage() {
+		return mileage;
+	}
+
+
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
+	}
 	
 	
 	

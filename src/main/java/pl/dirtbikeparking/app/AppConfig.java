@@ -3,8 +3,10 @@ package pl.dirtbikeparking.app;
 import java.util.Locale;
 
 import javax.persistence.EntityManagerFactory;
+import javax.servlet.MultipartConfigElement;
 import javax.validation.Validator;
 
+import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +39,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+	
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -69,4 +72,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	public Validator validator() {
 		return new LocalValidatorFactoryBean();
 	}
+	
+	@Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize("128kb");
+        factory.setMaxRequestSize("128kb");
+        return factory.createMultipartConfig();
+   }
 }
