@@ -1,35 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
-	<%@ include file="jspf/header.jspf"%>
-	<%@ include file="jspf/main_menu.jspf"%>
-	
-	<form:form method="post" modelAttribute="user">
-	Imie: <form:input path="name"/><br />
-	Nazwisko: <form:input path="surname"/><br />
-			Miejsce zamieszkania: <form:input path="location"/>[format: 606567489]<br />
-				Nr telefonu: <form:input path="telNumber"/><br />
- 		Nazwa użytkownika: <form:input path="username"/><br />
- 		Email: <form:input path="email"/><br />
- 		Hasło: <form:password path="password"/><br />
- 		 <input type="submit" value="Zarejstruj">
- 	<form:errors></form:errors>
-	
-	<%@ include file="jspf/footer.jspf"%>
-	</form:form>
-	
-	
 
+			<%@ include file="jspf/header.jspf"%>
+			<%@ include file="jspf/main_menu.jspf"%>
 
+	<div class="container">
+	<div class=" justify-content-center">
 
-</body>
-</html>
+				<h2>Zarejstruj sie!</h2>
+
+				<form:form method="post" modelAttribute="user">
+<div class="form-group col-4">Imie: <form:input path="name" placeholder="imie" cssClass="form-control"/>
+		<form:errors path="name" /></div>
+	<div class="form-group col-4 ">Nazwisko: <form:input path="surname" placeholder="nazwiko" cssClass="form-control"/>
+		<form:errors path="surname" /></div>
+			<div class="form-group col-4">Miejsce Zamieszkania: <form:input path="location" placeholder="miejscowość" cssClass="form-control"/>
+		<form:errors path="location" /></div>
+				<div class="form-group col-4">Nr tel: <form:input path="telNumber" placeholder="numer" cssClass="form-control"/>
+		<form:errors path="telNumber" /></div>
+ 		<div class="form-group col-4">Nazwa użytkownika: <form:input path="username" placeholder="nazwa użytkownika" cssClass="form-control"/>
+		<form:errors path="username" /></div>
+ 		<div class="form-group col-4">Email: <form:input path="email" placeholder="email" cssClass="form-control"/>
+		<form:errors path="email" /></div>
+ 		<div class="form-group col-4">Hasło: <form:input path="password" placeholder="hasło" cssClass="form-control"/>
+		<form:errors path="password" /></div>
+					<input type="submit" class="btn btn-primary" value="Zarejstruj">	
+				</form:form>
+
+	
+			</div>
+		</div>
+	</div>
+<%@ include file="jspf/footer.jspf"%>

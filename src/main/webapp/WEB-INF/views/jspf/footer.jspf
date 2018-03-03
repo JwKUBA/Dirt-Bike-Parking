@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
- <%@ page language="java" contentType="text/html; charset=UTF-8"
-     pageEncoding="UTF-8"%>
- <p>Copyright: Jakub Ciaś</p> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+
+<!-- Footer -->
+<footer class="fixed-bottom " style="background-color: #437070;" >
+	<div class="container">
+		<p class="m-0 text-center text-white">Contact DirtBikeParking@gmail.com</p>
+		<p class="m-0 text-center text-white">Copyright: DirtBikeParking
+			2018</p>
+	</div>
+	<!-- /.container -->
+</footer>
+
+
+<!-- Bootstrap core JavaScript -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/category.js">
+	
+</script>
+
+</body>
+</html>

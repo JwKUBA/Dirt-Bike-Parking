@@ -61,7 +61,7 @@ public class NoticeController {
 			String fileName = null;
 			if(!file.isEmpty()) {
 				try {
-					if(file.getSize()> 1736920){
+					if(file.getSize()> 1310721){
 						m.addAttribute("errorMessage", "Zbyt duży rozmiar pliku");
 						return "notice/add_notice";
 					}

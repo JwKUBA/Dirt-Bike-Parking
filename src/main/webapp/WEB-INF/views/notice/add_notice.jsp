@@ -8,9 +8,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert title here</title>
+	<%@ include file="../jspf/header.jspf"%>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/css/style.css">
+	<link rel="stylesheet" href="resources/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 <body>
-	<%@ include file="../jspf/header.jspf"%>
+
 	<%@ include file="../jspf/main_menu.jspf"%>
 
 
