@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 
 <!-- Footer -->
-<footer class="fixed-bottom " style="background-color: #437070;" >
+<footer class="fixed" style="background-color: #437070;" >
 	<div class="container">
 		<p class="m-0 text-center text-white">Contact DirtBikeParking@gmail.com</p>
 		<p class="m-0 text-center text-white">Copyright: DirtBikeParking

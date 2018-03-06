@@ -6,3 +6,22 @@ body {
 	background: url("../img/123.jpg") no-repeat center center fixed;
   	
 }
+
+.my-4{
+	background-color: #437070;
+	color:#e6e6e6;
+	text-align: center;
+	font-weight: 700;
+	
+	
+}
+
+.list-group-item {
+	background-color: #808080;
+	color:#e6e6e6;
+}
+.list-group-item active {
+	background-color: #808080;
+	color:#e6e6e6;
+}
+

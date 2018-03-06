@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+		<div class="col-lg-3">
+			<h2 class="my-4">Dirt Bike Parking</h2>
+			
+
+
+<div class="list-group">
+  <a class="list-group-item disabled text-white " style="background-color: #437070;" >Marki Motocykli</a>
+  <a href="http://localhost:8080/DirtBikeParking/brands/Beta" class="list-group-item list-group-item-action waves-effect">Beta</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/GasGas" class="list-group-item list-group-item-action waves-effect">GasGas</a>
+ <a href="http://localhost:8080/DirtBikeParking/brands/Honda"class="list-group-item list-group-item-action waves-effect">Honda</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/Husaberg" class="list-group-item list-group-item-action waves-effect">Husaberg</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/Husqvarna" class="list-group-item list-group-item-action waves-effect">Husqvarna</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/Kawasaki"class="list-group-item list-group-item-action waves-effect">Kawasaki</a>
+ <a href="http://localhost:8080/DirtBikeParking/brands/Ktm" class="list-group-item list-group-item-action waves-effect">KTM</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/Sherco" class="list-group-item list-group-item-action waves-effect">Sherco</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/Suzuki" class="list-group-item list-group-item-action waves-effect">Suzuki</a>
+ <a href="http://localhost:8080/DirtBikeParking/brands/Tm"class="list-group-item list-group-item-action waves-effect">TM</a>
+<a href="http://localhost:8080/DirtBikeParking/brands/Yamaha" class="list-group-item list-group-item-action waves-effect">Yamaha</a>
+  
+  
+
+  
+</div>
+</div>

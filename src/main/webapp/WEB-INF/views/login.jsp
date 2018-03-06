@@ -12,29 +12,36 @@
 
 	<div class="justify-content-center">
 
-			
-<h2>Zaloguj sie!</h2>
 
-			<p>
-				<class="error">${msg}
-			</p>
-			
-			<form:form method="post" modelAttribute="loginData">
+		<h2>Zaloguj sie!</h2>
 
- 		<div class="form-group col-4">Email: <form:input path="email" placeholder="Enter email" cssClass="form-control"/>
-		<form:errors path="email" /></div>
-		<div class="form-group col-4">Password: <form:password path="password" placeholder="Password" cssClass="form-control"/>
-		<form:errors path="password" /></div>
-		<input type="submit" class="btn btn-primary" value="Zaloguj">
-				
-			</form:form>
-			
-		
- 
-	
-			
-		</div>
-	</div>	
+		<p>
+			<class="error">${msg}
+		</p>
+
+		<form:form method="post" modelAttribute="loginData">
+
+			<div class="form-group col-4">
+				Email:
+				<form:input path="email" placeholder="Enter email"
+					cssClass="form-control" />
+				<form:errors path="email" />
+			</div>
+			<div class="form-group col-4">
+				Password:
+				<form:password path="password" placeholder="Password"
+					cssClass="form-control" />
+				<form:errors path="password" />
+			</div>
+			<input type="submit" class="btn btn-primary" value="Zaloguj">
+		</form:form>
+
+
+
+
+
+	</div>
+</div>
 </div>
 
-<%@ include file="jspf/footer.jspf"%>
+
