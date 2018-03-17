@@ -2,6 +2,7 @@ package pl.dirtbikeparking.entity;
 
 import java.util.Date;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,10 @@ public class Notice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+//	@ManyToOne
+//	private ToObserve toObserver;
+
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private User createdBy;
 	
@@ -190,9 +195,10 @@ public class Notice {
 	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
+
+
 	
-	
-	
+
 	
 	
 	

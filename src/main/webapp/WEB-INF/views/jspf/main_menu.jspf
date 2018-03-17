@@ -35,6 +35,10 @@
 							href="/DirtBikeParking/add">Dodaj Ogłoszenie </a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/DirtBikeParking/notice">Twoje Ogłoszenia </a></li>
+							
+							<li class="nav-item"><a class="nav-link"
+							href="http://localhost:8080/DirtBikeParking/toObserve">Obserwowane </a></li>
+							
 						<li class="nav-item"><a class="nav-link"
 							href="/DirtBikeParking/change">Edytuj Profil </a></li>
 						<li class="nav-item"><a class="nav-link"

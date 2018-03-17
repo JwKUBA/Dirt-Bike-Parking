@@ -32,7 +32,7 @@
 				</div>
 				<div class="card-header text-white"
 					style="background-color: #437070;">Opis:</div>
-				<p class="card-text"> ${details.description}</p>
+				<p class="card-text">${details.description}</p>
 				<div class="card-header text-white"
 					style="background-color: #437070;">Kontakt:</div>
 				<div class="card-body">
@@ -41,6 +41,52 @@
 							${details.user.telNumber} Email: ${details.user.email} </a><br>
 				</div>
 			</div>
+
+			<c:choose>
+				<c:when test="${sessionScope.user.id!=details.user.id}">
+
+
+					<c:choose>
+						<c:when test="${details.toObserve!=true}">
+
+							<p>
+								<a
+									href="http://localhost:8080/DirtBikeParking/toObserve/${details.id}"
+									type="button" class="btn btn-secondary btn-lg btn-block">Dodaj
+									do obserwowanych</a>
+
+							</p>
+						</c:when>
+						<c:when test="${details.toObserve==true}">
+
+							<p>
+								<a
+									href="http://localhost:8080/DirtBikeParking/toObserve/${details.id}"
+									type="button" class="btn btn-secondary btn-lg btn-block">Usuń
+									z obserwowanych</a>
+
+							</p>
+							</c:when>
+					</c:choose>
+
+				</c:when>
+			</c:choose>
+
+
+			<c:choose>
+				<c:when test="${sessionScope.user.id==details.user.id}">
+					<p>
+						<a
+							href="http://localhost:8080/DirtBikeParking/notice/edit/${details.id}"
+							type="button" class="btn btn-secondary btn-lg">Edytuj
+							ogłoszenie</a> <a
+							href="http://localhost:8080/DirtBikeParking/notice/delete/${details.id}"
+							type="button" class="btn btn-secondary btn-lg">Usuń
+							ogłoszenie</a>
+					</p>
+
+				</c:when>
+			</c:choose>
 
 		</div>
 	</div>

@@ -1,7 +1,11 @@
 package pl.dirtbikeparking.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import pl.dirtbikeparking.entity.Notice;
 import pl.dirtbikeparking.entity.User;
 
 
@@ -12,3 +16,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	User findById(int id);
 	
 }
+
+

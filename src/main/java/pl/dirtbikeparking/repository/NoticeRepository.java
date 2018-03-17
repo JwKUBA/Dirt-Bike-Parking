@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 import pl.dirtbikeparking.entity.Notice;
+import pl.dirtbikeparking.entity.User;
 
 
 
@@ -14,7 +15,16 @@ import pl.dirtbikeparking.entity.Notice;
 		
 		@Query(value = "SELECT * FROM notice WHERE brand=?1", nativeQuery = true)
 		public List<Notice> findBrand(String brand);
+		
+		List<Notice> findAllByCreatedBy(User createdBy);
+		
+		Notice findById(int id);
+		
 
-	
+		
+
+		
+		
 	}
+	
 

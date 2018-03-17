@@ -1,5 +1,6 @@
 package pl.dirtbikeparking.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,7 +28,14 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+	
+	
+	@OneToMany(mappedBy = "toObserve",  cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+	private List <ToObserve> toObserve =new ArrayList<>();;
 
+	
+	
+	
 	@NotBlank
 	@Column(unique = true)
 	@Size(min = 3, max = 30)
@@ -153,6 +162,16 @@ public class User {
 	public void setNotice(List<Notice> notice) {
 		this.notice = notice;
 	}
+
+	public List<ToObserve> getToObserve() {
+		return toObserve;
+	}
+
+	public void setToObserve(List<ToObserve> toObserve) {
+		this.toObserve = toObserve;
+	}
+
+	
 	
 	
 	

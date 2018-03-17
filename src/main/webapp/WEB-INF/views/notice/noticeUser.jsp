@@ -3,19 +3,19 @@
 	pageEncoding="UTF-8" isELIgnored="false" isErrorPage="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<%@ include file="jspf/header.jspf"%>
-<%@ include file="jspf/main_menu.jspf"%>
-<c:choose>
-	<c:when test="${sessionScope.user.id!=null}">
+<%@ include file="../jspf/header.jspf"%>
+<%@ include file="../jspf/main_menu.jspf"%>
+
 <div class="container">
 
 	<div class="row">
-		<%@ include file="jspf/brands.jspf"%>
+		<%@ include file="../jspf/brands.jspf"%>
 
 		<div class="col-lg-9">
 			<p>${msg}</p>
+
 			<div class="row">
-				<c:forEach items="${allNotice}" var="product">
+				<c:forEach items="${noticeUser}" var="product">
 
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
@@ -40,13 +40,9 @@
 				</c:forEach>
 
 			</div>
-			
 		</div>
 	</div>
-	
 </div>
 </br>
 
-<%@ include file="jspf/footer.jspf"%>
-</c:when>
-</c:choose>
+<%@ include file="../jspf/footer.jspf"%>

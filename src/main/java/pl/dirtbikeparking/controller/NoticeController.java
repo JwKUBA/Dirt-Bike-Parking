@@ -26,12 +26,15 @@ import pl.dirtbikeparking.bean.SessionManager;
 import pl.dirtbikeparking.entity.Notice;
 import pl.dirtbikeparking.entity.User;
 import pl.dirtbikeparking.repository.NoticeRepository;
+import pl.dirtbikeparking.repository.UserRepository;
 
 @Controller
 public class NoticeController {
 
 	@Autowired
 	NoticeRepository noticeRepository;
+	@Autowired
+	UserRepository userRepository;
 
 	@GetMapping("/add")
 	public String register(Model m) {
@@ -40,13 +43,12 @@ public class NoticeController {
 	}
 
 	@PostMapping("/add")
-	public String addProductPost(Model m, @Valid @ModelAttribute Notice notice, BindingResult bindingResult, 
+	public String addProductPost(Model m, @Valid @ModelAttribute Notice notice, BindingResult bindingResult,
 			@RequestParam("fileUrl") MultipartFile file) {
 		if (bindingResult.hasErrors()) {
 			return "notice/add_notice";
 		}
-		
-		
+
 		HttpSession s = SessionManager.session();
 		User u = (User) s.getAttribute("user");
 		notice.setCreated(new Date());
@@ -55,66 +57,144 @@ public class NoticeController {
 		notice.setFileUrl(null);
 		this.noticeRepository.save(notice);
 
+		// pobranie id
+		int imgId = notice.getId();
+		// budowanie nazwy
+		String fileName = null;
+		if (!file.isEmpty()) {
+			try {
+				if (file.getSize() > 1310721) {
+					m.addAttribute("errorMessage", "Zbyt duży rozmiar pliku");
+					return "notice/add_notice";
+				}
 
-//pobranie id
-			int imgId = notice.getId();
-			// budowanie nazwy
-			String fileName = null;
-			if(!file.isEmpty()) {
-				try {
-					if(file.getSize()> 1310721){
-						m.addAttribute("errorMessage", "Zbyt duży rozmiar pliku");
-						return "notice/add_notice";
-					}
-
-					String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+				String extension = FilenameUtils.getExtension(file.getOriginalFilename());
 
 				if (extension.equals("jpg") || extension.equals("jpeg")) {
 
-						fileName = "zdjecie_" + imgId + "." + extension;
-						byte[] bytes = file.getBytes();
-						BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(
-								"/home/jakub/dirtbikeparking/DirtBikeParking/src/main/webapp/resources/uploads/notice/"
-										+ fileName)));
-						buffStream.write(bytes);
-						buffStream.close();
+					fileName = "zdjecie_" + imgId + "." + extension;
+					byte[] bytes = file.getBytes();
+					BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(
+							"/home/jakub/dirtbikeparking/DirtBikeParking/src/main/webapp/resources/uploads/notice/"
+									+ fileName)));
+					buffStream.write(bytes);
+					buffStream.close();
 
-						// seter dla url
-						notice.setFileUrl(fileName);
-						// zapis db
-						noticeRepository.save(notice);
+					// seter dla url
+					notice.setFileUrl(fileName);
+					// zapis db
+					noticeRepository.save(notice);
 
-						//m.addAttribute("message", "Dodano produkt do bazy.");
-						return "redirect:/";
-
-					} else {
-						//m.addAttribute("errorMessage", "Niepoprawny format pliku graficznego.");
-						return "notice/add_notice";
-					}
-
-				} catch (Exception e) {
+					// m.addAttribute("message", "Dodano produkt do bazy.");
 					return "redirect:/";
-				}
-			}
-			m.addAttribute("errorMessage", "Brak zdjęcia.");
-			return "notice/add_notice";
 
+				} else {
+					// m.addAttribute("errorMessage", "Niepoprawny format pliku graficznego.");
+					return "notice/add_notice";
+				}
+
+			} catch (Exception e) {
+				return "redirect:/";
+			}
 		}
-	
-	
-	
+		m.addAttribute("errorMessage", "Brak zdjęcia.");
+		return "notice/add_notice";
+
+	}
+
+	@GetMapping("/notice")
+	public String notice(Model m) {
+		HttpSession s = SessionManager.session();
+		User user = (User) s.getAttribute("user");
+		List<Notice> noticeUser = this.noticeRepository.findAllByCreatedBy(user);
+		m.addAttribute("noticeUser", noticeUser);
+		return "/notice/noticeUser";
+	}
+
 	@GetMapping("/{id}")
-	public String noticeDetails(Model m , @PathVariable int id ) {
+	public String noticeDetails(Model m, @PathVariable int id) {
+		HttpSession s = SessionManager.session();
+		User user = (User) s.getAttribute("user");
 		Notice notice = this.noticeRepository.findOne(id);
 		m.addAttribute("details", notice);
 		return "/notice/details";
 	}
-	
-	
-	
-	
-	
-	
+
+	@GetMapping("/notice/delete/{id}")
+	public String deleteDetails(Model m, @PathVariable int id) {
+		Notice notice = this.noticeRepository.findById(id);
+		this.noticeRepository.delete(notice);
+		return "redirect:/notice";
+	}
+
+	@GetMapping("/notice/edit/{id}")
+	public String editDetails(Model m, @PathVariable int id) {
+		Notice notice = this.noticeRepository.findById(id);
+		m.addAttribute("notice", notice);
+		return "notice/add_notice";
+
+	}
+
+	@PostMapping("/notice/edit/{id}")
+	public String editNoticePost(Model m, @Valid @ModelAttribute Notice notice, BindingResult bindingResult,
+			@RequestParam("fileUrl") MultipartFile file) {
+		if (bindingResult.hasErrors()) {
+			return "notice/add_notice";
+		}
+
+		HttpSession s = SessionManager.session();
+		User u = (User) s.getAttribute("user");
+		notice.setCreated(new Date());
+		notice.setCreatedBy(u);
+		notice.setUser(u);
+		notice.setFileUrl(null);
+		this.noticeRepository.save(notice);
+
+		// pobranie id
+		int imgId = notice.getId();
+		// budowanie nazwy
+		String fileName = null;
+		if (!file.isEmpty()) {
+			try {
+				if (file.getSize() > 1310721) {
+					m.addAttribute("errorMessage", "Zbyt duży rozmiar pliku");
+					return "notice/add_notice";
+				}
+
+				String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+
+				if (extension.equals("jpg") || extension.equals("jpeg")) {
+
+					fileName = "zdjecie_" + imgId + "." + extension;
+					byte[] bytes = file.getBytes();
+					BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(
+							"/home/jakub/dirtbikeparking/DirtBikeParking/src/main/webapp/resources/uploads/notice/"
+									+ fileName)));
+					buffStream.write(bytes);
+					buffStream.close();
+
+					// seter dla url
+					notice.setFileUrl(fileName);
+					// zapis db
+					noticeRepository.save(notice);
+
+					// m.addAttribute("message", "Dodano produkt do bazy.");
+					return "redirect:/";
+
+				} else {
+					// m.addAttribute("errorMessage", "Niepoprawny format pliku graficznego.");
+					return "notice/add_notice";
+				}
+
+			} catch (Exception e) {
+				return "redirect:/";
+			}
+		}
+		m.addAttribute("errorMessage", "Brak zdjęcia.");
+		return "notice/add_notice";
+
+	}
+
 
 	@ModelAttribute("brands")
 	public List<String> getBrand() {
