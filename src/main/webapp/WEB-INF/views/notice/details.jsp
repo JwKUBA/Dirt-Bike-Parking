@@ -47,7 +47,7 @@
 
 
 					<c:choose>
-						<c:when test="${details.toObserve!=true}">
+						<c:when test="${toObserve.test==null}">
 
 							<p>
 								<a
@@ -57,16 +57,18 @@
 
 							</p>
 						</c:when>
-						<c:when test="${details.toObserve==true}">
+						
+						<c:when test="${toObserve.test!=0}">
 
 							<p>
 								<a
-									href="http://localhost:8080/DirtBikeParking/toObserve/${details.id}"
+									href="http://localhost:8080/DirtBikeParking/toObserve/delete/${details.id}"
 									type="button" class="btn btn-secondary btn-lg btn-block">Usuń
 									z obserwowanych</a>
 
 							</p>
 							</c:when>
+							
 					</c:choose>
 
 				</c:when>

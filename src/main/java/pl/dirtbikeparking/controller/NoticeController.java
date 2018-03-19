@@ -24,8 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import pl.dirtbikeparking.bean.SessionManager;
 import pl.dirtbikeparking.entity.Notice;
+import pl.dirtbikeparking.entity.ToObserve;
 import pl.dirtbikeparking.entity.User;
 import pl.dirtbikeparking.repository.NoticeRepository;
+import pl.dirtbikeparking.repository.ToObserveRepository;
 import pl.dirtbikeparking.repository.UserRepository;
 
 @Controller
@@ -35,6 +37,8 @@ public class NoticeController {
 	NoticeRepository noticeRepository;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	ToObserveRepository toObserveRepository;
 
 	@GetMapping("/add")
 	public String register(Model m) {
@@ -116,6 +120,8 @@ public class NoticeController {
 		HttpSession s = SessionManager.session();
 		User user = (User) s.getAttribute("user");
 		Notice notice = this.noticeRepository.findOne(id);
+		ToObserve toObserve = this.toObserveRepository.findByNotice(notice); 
+		m.addAttribute("toObserve", toObserve);
 		m.addAttribute("details", notice);
 		return "/notice/details";
 	}
